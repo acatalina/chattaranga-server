@@ -5,8 +5,6 @@ const users = [
     name: 'Tony',
     email: 'to.sian.san@gmail.com',
     smileys: 6,
-    available: false,
-    ip: '127.800.1.3000',
     memberSince: '2016-11-14T00:00:00.234Z'
   },
   {
@@ -15,8 +13,6 @@ const users = [
     name: 'Ruth',
     email: 'ruth.ym.ng@gmail.com',
     smileys: 5,
-    available: false,
-    ip: '127.800.4.3000',
     memberSince: '2017-01-04T00:00:00.234Z'
   }
 ];
