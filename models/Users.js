@@ -7,10 +7,6 @@ const UserSchema = new Schema({
     unique: true,
     lowercase: true
   },
-  userLanguages: {
-    type: Array,
-    required: true
-  },
   name: {
     type: String,
     required: true
@@ -22,11 +18,15 @@ const UserSchema = new Schema({
   },
   smileys: {
     type: Number,
-    required: true
+    default: 0
   },
   memberSince: {
     type: String,
     default: new Date()
+  },
+  userLanguages: {
+    type: Array,
+    default: []
   }
 });
 

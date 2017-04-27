@@ -1,20 +1,15 @@
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'dev';
 
 const express = require('express');
+const path = require('path');
 const config = require('./config');
-const mongoose = require('mongoose');
-
-const app = express();
-const db = config.DB[process.env.NODE_ENV] || process.env.DB;
-const PORT = config.PORT[process.env.NODE_ENV] || process.env.PORT;
-
+const errorHandler = require('./error/index');
 const apiRouter = require('./routes/api');
 
-mongoose.connect(db, (err) => {
-  if (err) return console.log(`error connecting to the Database ${err}`);
+const app = express();
+const PORT = config.PORT[process.env.NODE_ENV] || process.env.PORT;
 
-  return console.log(`connected to the Database: ${db}`);
-});
+app.use(express.static(path.resolve(__dirname, 'public')));
 
 app.use('/api', apiRouter);
 
@@ -29,3 +24,5 @@ app.listen(PORT, (err) => {
   }
   console.log(`listening on port ${PORT}`);
 });
+
+app.use(errorHandler);

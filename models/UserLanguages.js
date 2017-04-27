@@ -8,7 +8,7 @@ const UserLanguagesSchema = new Schema({
   },
   numOfChats: {
     type: Number,
-    required: true
+    default: 0
   },
   level: {
     type: String,
@@ -16,11 +16,11 @@ const UserLanguagesSchema = new Schema({
   },
   talkTime: {
     type: Number,
-    required: true
+    default: 0
   },
   teacherPoints: {
     type: Number,
-    required: true
+    default: 0
   }
 });
 
