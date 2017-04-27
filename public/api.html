@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chattaranga API Server</title>
+  <style>
+    html {
+      background-color: #fcfcfc;
+      color: #1e1e1e;
+      font-weight: 900;
+      font-size: 1.1em;
+    }
+    .line {
+      height: .1em;
+      background-color: #1e1e1e;
+    }
+    li p {
+      text-transform: capitalize;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Chattaranga API</h1>
+  <div class="line"></div>
+  <main>
+    <p>Find below instructions to interact with our API.</p>
+    <ul>
+      <li>GET /badges <p>gets all available badges<p></li>
+      <li>GET /:languageId/:levelId/prompts <p>gets all available prompts</p></li>
+      <li>GET /users/:username <p>gets a particular user's profile</p></li>
+      <li>GET /languages <p>gets all available languages</p></li>
+      <li>GET /levels <p>gets all available levels</p></li>
+      <li>PUT /users/:username/smileys <p>updates a particular user's smileys</p></li>
+      <li>PUT /users/:username/:language 
+        <p>
+          send a valid query (teacherpoints, numofchats or talktime) and value to update
+          a particular language profile of a username. 
+        </p>
+      </li>
+      <li>POST /users 
+        <p>
+          creates a new user: Please send a raw JSON object with key-value pairs 
+          of username in lowercase, name, email and userlanguages (array with objects 
+          where every object has a key of language ID and value of level ID.  
+        </p>
+      </li>
+    </ul>
+  </main>
+</body>
+</html>
+<!--
+
+router.route('/users/:username/:language')
+  .put(userLanguagesController);
+
+router.route('/users')
+  .post(newUserController);-->

@@ -1,7 +1,9 @@
-const { expect } = require('chai');
+process.env.NODE_ENV = 'test';
 
-describe('Example test', function () {
-  it('Will not allow commit if test is failing', function () {
-    expect(true).to.equal(true);
+const {expect} = require('chai');
+
+describe('Chattaranga server', () => {
+  it('needs testing', () => {
+    expect(true).to.be.true;
   });
 });
