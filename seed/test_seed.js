@@ -1,7 +1,3 @@
-if (!process.env.NODE_ENV) process.env.NODE_ENV = 'test'; 
-
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 const async = require('async');
 const ChattarangaData = require('./data/data');
 const Users = require('../models/Users');
@@ -11,7 +7,6 @@ const Level = require('../models/Levels');
 const Topic = require('../models/Topics');
 const Prompt = require('../models/Prompts');
 const UserLanguages = require('../models/UserLanguages');
-const {DB} = require('./.config')[process.env.NODE_ENV];
 
 function addBadges(next) {
   async.map(ChattarangaData.badges, (badge, next) => {
@@ -117,45 +112,35 @@ function addUsers(badges, languages, levels, topics, prompts, userLanguages, don
   });
 }
 
-function seed(grabData) {
-  mongoose.connect(DB, (err) => {
-    if (err) {
-      console.log(JSON.stringify(err));
-      process.exit();
-    }
-    
-    console.log('connected to db');
-
-    mongoose.connection.db.dropDatabase(() => {
-      async.waterfall([
-        addBadges,
-        addLanguages,
-        addLevels,
-        addTopics,
-        addPrompts,
-        addUserLanguages,
-        addUsers
-      ], (err, badges, languages, levels, topics, prompts, users, userLanguages) => {
-        if (err) {
-          console.log(JSON.stringify(err));
-          process.exit();
-        }
-        
-        const data = {
-          badges,
-          languages,
-          levels,
-          topics,
-          prompts,
-          userLanguages,
-          users
-        };
-        if (grabData) grabData(data);
-        console.log('DONE SEEDING!');
+const seed = (grabData) => {
+  async.waterfall([
+    addBadges,
+    addLanguages,
+    addLevels,
+    addTopics,
+    addPrompts,
+    addUserLanguages,
+    addUsers
+  ], ((err, badges, languages, levels, topics, prompts, users, userLanguages) => {
+      if (err) {
+        console.log(JSON.stringify(err));
         process.exit();
-        });
-    });
-  });
-}
+      }
+      
+      const data = {
+        badges,
+        languages,
+        levels,
+        topics,
+        prompts,
+        userLanguages,
+        users
+      };
+      
+      if (grabData) return grabData(data);
+      console.log('DONE SEEDING!');
+      process.exit();
+    }));
+};
 
 module.exports = seed;
