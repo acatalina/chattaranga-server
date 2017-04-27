@@ -108,7 +108,7 @@ function addUsers(badges, languages, levels, topics, prompts, userLanguages, don
       return err ? next(err) : next(null, res);
     });
   }, (err, users) => {
-    return err ? done(err) : done(null, badges, languages, levels, topics, prompts, users);
+    return err ? done(err) : done(null, badges, languages, levels, topics, prompts, userLanguages, users);
   });
 }
 
@@ -121,7 +121,7 @@ const seed = (grabData) => {
     addPrompts,
     addUserLanguages,
     addUsers
-  ], ((err, badges, languages, levels, topics, prompts, users, userLanguages) => {
+  ], ((err, badges, languages, levels, topics, prompts, userLanguages, users) => {
       if (err) {
         console.log(JSON.stringify(err));
         process.exit();
