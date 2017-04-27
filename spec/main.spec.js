@@ -134,5 +134,45 @@ describe('Chattaranga server', () => {
         });
       });
     });
+
+    describe('GET /prompts/:language/:level', () => {
+      let level;
+      let language;
+      let prompts;
+      let response;
+
+      before((done) => {
+        language = data.languages[1].name;
+        level = data.levels[2].name;
+        request(ROOT)
+          .get(`/api/prompts/${language}/${level}`)
+          .end((err, res) => {
+            prompts = res.body.prompts.reduce((res, prompt) => {
+              res[prompt._id] = prompt;
+              return res;
+            }, {});
+
+            response = res;
+            done();
+          });
+      });
+      
+      it('returns status code 200', () => {
+        expect(response.status).to.equal(200);
+      });
+
+      it('returns all available prompts from a particular language and level', () => {
+        data.prompts.forEach((prompt) => {
+          if (prompts[prompt._id]) {
+            expect(prompt._id.toString()).to.equal(prompts[prompt._id]._id);
+          }
+        });
+
+        response.body.prompts.forEach((prompt) => {
+          expect(prompt.language).to.equal(language);
+          expect(prompt.level).to.equal(level);
+        });
+      });
+    });
   });
 });
