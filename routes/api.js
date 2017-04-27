@@ -20,7 +20,7 @@ mongoose.connect(db, (err) => {
 router.route('/badges')
   .get((controllers.getBadges));
 
-router.route('/:language/:level/prompts')
+router.route('/prompts/:language/:level')
   .get(controllers.getPrompts);
 
 router.route('/users/:username/')
