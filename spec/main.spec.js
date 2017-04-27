@@ -171,7 +171,144 @@ describe('Chattaranga server', () => {
         response.body.prompts.forEach((prompt) => {
           expect(prompt.language).to.equal(language);
           expect(prompt.level).to.equal(level);
+          expect(prompt).to.haveOwnProperty('topic');
+          expect(prompt).to.haveOwnProperty('text');
         });
+      });
+    });
+
+    describe('GET /users/:username', () => {
+      let requestedUser;
+      let user;
+      let response;
+
+      before((done) => {
+        requestedUser = data.users[0];
+
+        request(ROOT)
+          .get(`/api/users/${requestedUser.username}`)
+          .end((err, res) => {            
+            user = res.body.user;
+            response = res;
+            done();
+          });
+      });
+      
+      it('returns status code 200', () => {
+        expect(response.status).to.equal(200);
+      });
+
+      it('returns a particular user by username', () => {
+        expect(user.username).to.equal(requestedUser.username);
+        expect(user).to.haveOwnProperty('email');
+        expect(user).to.haveOwnProperty('userLanguages');
+        expect(user).to.haveOwnProperty('name');
+        expect(user).to.haveOwnProperty('memberSince');
+        expect(user).to.haveOwnProperty('smileys');
+      });
+    });
+
+    describe('PUT /users/:username/smileys', () => {
+      let requestedUser;
+      let response;
+
+      before((done) => {
+        requestedUser = data.users[0];
+
+        request(ROOT)
+          .put(`/api/users/${requestedUser.username}/smileys`)
+          .end((err, res) => {
+            response = res;
+            done();
+          });
+      });
+      
+      it('returns status code 204', () => {
+        expect(response.status).to.equal(204);
+      });
+
+      it('updates by one the smileys of a particular user by username', (done) => {
+        request(ROOT)
+          .get(`/api/users/${requestedUser.username}`)
+          .end((err, res) => {
+            expect(res.body.user.smileys).to.equal(requestedUser.smileys + 1);
+            done();
+          });
+      });
+    });
+
+    describe('PUT /users/:username/:language', () => {
+      let requestedLanguage;
+      let requestedUser;
+      let response;
+
+      before((done) => {
+        requestedUser = data.users[0];
+        requestedLanguage = 'english';
+        
+        request(ROOT)
+          .put(`/api/users/${requestedUser.username}/${requestedLanguage}?teacherpoints=1&numofchats=1&talktime=1`)
+          .end((err, res) => {
+            response = res;
+            done();
+          });
+      });
+      
+      it('returns status code 204', () => {
+        expect(response.status).to.equal(204);
+      });
+
+      it('updates teacherpoints, numofchats and talktime of a username`s language', (done) => {
+        request(ROOT)
+          .get(`/api/users/${requestedUser.username}`)
+          .end((err, res) => {
+            let userLanguageToTest = res.body.user.userLanguages.find(userLanguage => {
+              return userLanguage.language === requestedLanguage;
+            });
+            expect(userLanguageToTest.teacherPoints).to.equal(data.userLanguages[0].teacherPoints + 1);
+            expect(userLanguageToTest.talkTime).to.equal(data.userLanguages[0].talkTime + 1);
+            expect(userLanguageToTest.numOfChats).to.equal(data.userLanguages[0].numOfChats + 1);
+            done();
+          });
+      });
+    });
+
+
+    describe('POST /users', () => {
+      let newUser;
+      let createdUser;
+      let response;
+
+      before((done) => {
+        newUser = {
+          username: 'tester',
+          name: 'don test',
+          email: 'dt@dt.com',
+          userLanguages: [
+            {[data.languages[0]._id]: data.levels[0]._id}
+          ]
+        };
+        request(ROOT)
+          .post('/api/users')
+          .send(newUser)
+          .end((err, res) => {
+            createdUser = res.body.user;
+            response = res;
+            done();
+          });
+      });
+      
+      it('returns status code 201', () => {
+        expect(response.status).to.equal(201);
+      });
+
+      it('returns the new created user', () => {
+        expect(createdUser.name).to.equal(newUser.name);
+        expect(createdUser.username).to.equal(newUser.username);
+        expect(createdUser.email).to.equal(newUser.email);
+        expect(createdUser.smileys).to.equal(0);
+        expect(createdUser.userLanguages).to.be.an('array');
+        expect(createdUser.userLanguages).to.lengthOf(1);
       });
     });
   });
