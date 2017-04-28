@@ -719,7 +719,7 @@ const prompts = [
 
   {
     topic: 8,
-    text: 'Qual'è stato l'ultimo libro che hai letto?',
+    text: 'Qual\'è stato l\'ultimo libro che hai letto?',
     language: 2,
     level: 2
   },
