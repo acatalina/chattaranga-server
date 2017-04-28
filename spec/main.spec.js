@@ -309,6 +309,8 @@ describe('Chattaranga server', () => {
         expect(createdUser.smileys).to.equal(0);
         expect(createdUser.userLanguages).to.be.an('array');
         expect(createdUser.userLanguages).to.lengthOf(1);
+        expect(createdUser.userLanguages[0].language).to.equal('english');
+        expect(createdUser.userLanguages[0].level).to.equal('beginner');
       });
     });
   });
