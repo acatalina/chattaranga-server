@@ -29,6 +29,7 @@
     "async": "^2.3.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "font-awesome": "^4.7.0",
     "mongoose": "^4.9.6",
     "underscore": "^1.8.3"
   }

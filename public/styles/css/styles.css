@@ -10,6 +10,10 @@ body {
   justify-content: space-around; }
   .nav .nav-item {
     display: flex; }
+    .nav .nav-item button {
+      padding: 0.2em;
+      margin-top: 1em;
+      margin-bottom: 1em; }
 
 .herotron {
   background-color: #fa9128;
@@ -21,6 +25,8 @@ body {
   padding-bottom: 4em; }
   .herotron img {
     max-width: 100%; }
+  .herotron button {
+    padding: 2em; }
 
 .container {
   padding-left: 10em;
@@ -37,7 +43,6 @@ body {
   color: #ff8002;
   background-color: #ffd8b2;
   font-weight: bold;
-  padding: 1.3em;
   font-size: 1em;
   border-radius: 1em; }
   .button-primary:hover {
