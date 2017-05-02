@@ -1,5 +1,5 @@
 const async = require('async');
-const ChattarangaData = require('./data/data');
+const ChattarangaData = require('./data/test_data');
 const Users = require('../models/Users');
 const Language = require('../models/Languages');
 const Badge = require('../models/Badges');
