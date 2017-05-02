@@ -10,15 +10,19 @@ body {
 .nav {
   color: $primary;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-left: 10em;
+  padding-right: 10em;
+
 
   .nav-item {
     display: flex;
+    align-items: center;
     button {
       padding: 0.2em;
-      margin-top: 1em;
-      margin-bottom: 1em;
+      padding-left: 0.5em;
     }
+
 
   }
 }
@@ -38,12 +42,37 @@ body {
   }
   button {
     padding: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+
+  .systems {
+    display: flex;
+    flex-direction: col;
+    justify-content: space-around;
+    color: $primary-light;
+    margin-top: 2em;
+    span {
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 }
 
 .container {
   padding-left: 10em;
   padding-right: 10em;
+} // TODO: Change to min width
+
+.container-centered {
+  @extend .container;
+  align-items: center;
 }
 
 .about {
@@ -68,4 +97,20 @@ body {
     -webkit-box-shadow: 0 0 10px 5px lighten($primary, 50%);
     box-shadow: 0 0 10px 5px lighten($primary, 50%);
   }
+}
+
+.icon {
+  margin-left: 0.2em;
+}
+
+.logo {
+  max-height: 4.7em;
+  max-width: 4.7em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-right: 1.5em;
+}
+
+h3 {
+  padding-right: 1em;
 }
