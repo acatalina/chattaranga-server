@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css?family=Muli");
+body {
+  margin: 0;
+  border: 0;
+  padding: 0; }
+
+.nav {
+  color: #fa9128;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10em;
+  padding-right: 10em; }
+  .nav .nav-item {
+    display: flex;
+    align-items: center; }
+    .nav .nav-item button {
+      padding: 0.2em;
+      padding-left: 0.5em; }
+
+.herotron {
+  background-color: #fa9128;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 4em;
+  padding-bottom: 4em; }
+  .herotron img {
+    max-width: 100%; }
+  .herotron button {
+    padding: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em; }
+  .herotron .systems {
+    display: flex;
+    flex-direction: col;
+    justify-content: space-around;
+    color: #ffd8b2;
+    margin-top: 2em; }
+    .herotron .systems span {
+      margin-left: 1em;
+      margin-right: 1em; }
+  .herotron .container, .herotron .container-centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; }
+
+.container, .container-centered {
+  padding-left: 10em;
+  padding-right: 10em; }
+
+.container-centered {
+  align-items: center; }
+
+.about img {
+  width: 100%; }
+
+.button-primary {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  border: 0;
+  color: #ff8002;
+  background-color: #ffd8b2;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 1em; }
+  .button-primary:hover {
+    cursor: pointer;
+    -moz-box-shadow: 0 0 10px 5px white;
+    -webkit-box-shadow: 0 0 10px 5px white;
+    box-shadow: 0 0 10px 5px white; }
+
+.icon {
+  margin-left: 0.2em; }
+
+.logo {
+  max-height: 4.7em;
+  max-width: 4.7em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-right: 1.5em; }
+
+h3 {
+  padding-right: 1em; }
+
+/*# sourceMappingURL=styles.css.map */
