@@ -103,12 +103,23 @@ h3 {
 
 .header1 {
   color: #243033;
-  text-align: center; }
+  text-align: center;
+  font-size: 40px;
+  padding-bottom: 8px; }
 
 .parallax-container {
   height: 40em; }
 
 .grey-text text-darken-3 lighten-3 {
   color: #243033; }
+
+.links {
+  text-align: center; }
+
+#credits {
+  font-size: 14px; }
+
+#footnote {
+  text-align: center; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -140,6 +140,8 @@ h3 {
 .header1 {
   color: $copy;
   text-align: center;
+  font-size: 40px;
+  padding-bottom: 8px;
 }
 
 .parallax-container {
@@ -148,6 +150,18 @@ h3 {
 
 .grey-text text-darken-3 lighten-3 {
   color: $copy;
+}
+
+.links {
+  text-align: center;
+}
+
+#credits {
+  font-size: 14px;
+}
+
+#footnote {
+  text-align: center;
 }
 
 
