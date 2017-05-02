@@ -7,8 +7,13 @@ body {
   padding: 0;
 }
 
+.about {
+  padding-right: 2em;
+}
+
 .nav {
   color: $primary;
+  padding-bottom: 0.1em;
   display: flex;
   justify-content: space-between;
   padding-left: 10em;
@@ -51,7 +56,7 @@ body {
     flex-direction: col;
     justify-content: space-around;
     color: $primary-light;
-    margin-top: 2em;
+    margin-top: 1em;
     span {
       margin-left: 1em;
       margin-right: 1em;
@@ -81,6 +86,7 @@ body {
   }
 }
 
+
 .button-primary {
   display: flex;
   align-items: center;
@@ -89,7 +95,7 @@ body {
   color: $primary-dark;
   background-color: $primary-light;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.1em;
   border-radius: 1em;
   &:hover {
     cursor: pointer;
@@ -100,12 +106,13 @@ body {
 }
 
 .icon {
+  color: #fa9128;
   margin-left: 0.2em;
 }
 
 .logo {
-  max-height: 4.7em;
-  max-width: 4.7em;
+  max-height: 6.9em;
+  max-width: 3.9em;
   padding-top: 1em;
   padding-bottom: 1em;
   margin-right: 1.5em;
@@ -114,3 +121,21 @@ body {
 h3 {
   padding-right: 1em;
 }
+
+.header {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.page-footer {
+  background-color: #fa9128;
+}
+
+.header1 {
+  text-align: center;
+}
+
+.parallax-container {
+  height: 40em;
+}
+
