@@ -7,6 +7,11 @@ body {
   padding: 0;
 }
 
+p {
+  color: #fa9128;
+  font-size: 17px
+}
+
 .about {
   padding-right: 2em;
 }
@@ -95,7 +100,7 @@ body {
   color: $primary-dark;
   background-color: $primary-light;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.2em;
   border-radius: 1em;
   &:hover {
     cursor: pointer;
@@ -111,8 +116,8 @@ body {
 }
 
 .logo {
-  max-height: 6.9em;
-  max-width: 3.9em;
+  max-height: 7.4em;
+  max-width: 4.4em;
   padding-top: 1em;
   padding-bottom: 1em;
   margin-right: 1.5em;
@@ -123,6 +128,7 @@ h3 {
 }
 
 .header {
+  color: $copy;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
 }
@@ -132,10 +138,30 @@ h3 {
 }
 
 .header1 {
+  color: $copy;
   text-align: center;
+  font-size: 40px;
+  padding-bottom: 8px;
 }
 
 .parallax-container {
   height: 40em;
 }
+
+.grey-text text-darken-3 lighten-3 {
+  color: $copy;
+}
+
+.links {
+  text-align: center;
+}
+
+#credits {
+  font-size: 14px;
+}
+
+#footnote {
+  text-align: center;
+}
+
 
