@@ -7,7 +7,7 @@ const errorHandler = require('./error/index');
 const apiRouter = require('./routes/api');
 
 const app = express();
-const PORT = config.PORT[process.env.NODE_ENV] || process.env.PORT;
+const PORT = process.env.PORT || config.PORT[process.env.NODE_ENV] ;
 
 app.use(express.static(path.resolve(__dirname, 'public')));
 

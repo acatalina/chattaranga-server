@@ -5,7 +5,7 @@ const controllers = require('../controllers/controllers');
 const bodyParser = require('body-parser');
 const path = require('path');
 const config = require('../config');
-const db = config.DB[process.env.NODE_ENV] || process.env.DB;
+const db = process.env.DB || config.DB[process.env.NODE_ENV];
 
 router.get('/', ((req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'public', 'api.html'));
