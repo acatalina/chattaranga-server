@@ -6,15 +6,9 @@ const languageTranslator = watson.language_translator({
   version: 'v2'
 });
 
-function getTranslation (req, res) {
-  if (!req.query.text) {
-    res.status(400).send({error: 'query must have a text field'});
-  }
-  if (!req.query.sourceLanguage) {
-    res.status(400).send({error: 'query must have a sourceLanguage field'});
-  }
-  if (!req.query.targetLanguage) {
-    res.status(400).send({error: 'query must have a targetLanguage field'});
+function getTranslation (req, res, next) {
+  if (!req.query.text || !req.query.sourceLanguage || !req.query.targetLanguage) {
+    return next({name: 'QUERY'});
   }
   languageTranslator.translate({
     text: req.query.text,
@@ -22,9 +16,9 @@ function getTranslation (req, res) {
     target: req.query.targetLanguage
   }, (err, translation) => {
     if (err) {
-      res.status(500).send({error: err});
+      return next(err);
     } else {
-      res.status(200).send({translation});
+      res.status(200).send({translation: translation.translations[0].translation});
     }
   });
 }
