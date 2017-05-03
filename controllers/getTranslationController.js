@@ -10,10 +10,16 @@ function getTranslation (req, res) {
   if (!req.query.text) {
     res.status(400).send({error: 'query must have a text field'});
   }
+  if (!req.query.sourceLanguage) {
+    res.status(400).send({error: 'query must have a sourceLanguage field'});
+  }
+  if (!req.query.targetLanguage) {
+    res.status(400).send({error: 'query must have a targetLanguage field'});
+  }
   languageTranslator.translate({
     text: req.query.text,
-    source: 'en',
-    target: 'es'
+    source: req.query.sourceLanguage,
+    target: req.query.targetLanguage
   }, (err, translation) => {
     if (err) {
       res.status(500).send({error: err});
