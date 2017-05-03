@@ -7,12 +7,16 @@ const async = require('async');
 
 function getLanguageIdByName (language, done) {
   Languages.find({name: language.toLowerCase()}, (err, language) => {
+    if (!language.length) return done('QUERY');
+
     return err ? done(err) : done(null, language[0]._id);
   });
 }
 
 function getLevelIdByName (level, done) {
   Levels.find({name: level.toLowerCase()}, (err, level) => {
+    if (!level.length) return done('QUERY');
+
     return err ? done(err) : done(null, level[0]._id);
   });
 }
@@ -37,7 +41,7 @@ function getPrompts (req, res, next) {
     };
     Prompts.find(query, (err, prompts) => {
       if (err) return next(err);
-      if (!prompts.length) return next({name: 'CastError'});
+      if (!prompts.length) return next({name: 'QUERY'});
       
       prompts = prompts.map(prompt => {
         prompt.language = language;

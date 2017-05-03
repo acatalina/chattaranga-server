@@ -4,6 +4,15 @@ module.exports = (err, req, res, next) => {
     let message;
 
     switch (err.name) {
+      case 'MongoError':
+        if (err.code === 11000) {
+          statusCode = 400;
+          message = {reason: 'Duplicate key'};
+          break;
+        }
+        statusCode = 500;
+        message = {err: err};
+        break;
       case 'CastError':
         statusCode = 404;
         message = {reason: 'Not found'};

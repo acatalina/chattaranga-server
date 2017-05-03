@@ -175,6 +175,16 @@ describe('Chattaranga server', () => {
           expect(prompt).to.haveOwnProperty('text');
         });
       });
+
+      it('handles invalid language or level', (done) => {
+        request(ROOT)
+          .get('/api/prompts/nonsense/nonsense')
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body.reason).to.equal('Invalid query');
+            done();
+          });
+      });
     });
 
     describe('GET /users/:username', () => {
@@ -206,6 +216,16 @@ describe('Chattaranga server', () => {
         expect(user).to.haveOwnProperty('memberSince');
         expect(user).to.haveOwnProperty('smileys');
       });
+
+      it('returns 404 if the user does not exist', (done) => {
+        request(ROOT)
+          .get('/api/users/DONOTEXIST')
+          .end((err, res) => {            
+            expect(res.status).to.equal(404);
+            expect(res.body.reason).to.equal('Not found');
+            done();
+          });
+      });
     });
 
     describe('PUT /users/:username/smileys', () => {
@@ -232,6 +252,16 @@ describe('Chattaranga server', () => {
           .get(`/api/users/${requestedUser.username}`)
           .end((err, res) => {
             expect(res.body.user.smileys).to.equal(requestedUser.smileys + 1);
+            done();
+          });
+      });
+
+      it('returns 404 if the user does not exist', (done) => {
+        request(ROOT)
+          .put('/api/users/DONOTEXIST/smileys')
+          .end((err, res) => {            
+            expect(res.status).to.equal(404);
+            expect(res.body.reason).to.equal('Not found');
             done();
           });
       });
@@ -268,6 +298,26 @@ describe('Chattaranga server', () => {
             expect(userLanguageToTest.teacherPoints).to.equal(data.userLanguages[0].teacherPoints + 1);
             expect(userLanguageToTest.talkTime).to.equal(data.userLanguages[0].talkTime + 1);
             expect(userLanguageToTest.numOfChats).to.equal(data.userLanguages[0].numOfChats + 1);
+            done();
+          });
+      });
+
+      it('handles non existant users', (done) => {
+        request(ROOT)
+          .put('/api/users/NONSENSE/NONSENSE?teacherpoints=1&numofchats=1&talktime=1')
+          .end((err, res) => {
+            expect(res.status).to.equal(404);
+            expect(res.body.reason).to.equal('Not found');
+            done();
+          });
+      });
+
+      it('handles invalid queries', (done) => {
+        request(ROOT)
+          .put('/api/users/NONSENSE/NONSENSE?nonsense=1')
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body.reason).to.equal('Invalid query');
             done();
           });
       });
@@ -311,6 +361,17 @@ describe('Chattaranga server', () => {
         expect(createdUser.userLanguages).to.lengthOf(1);
         expect(createdUser.userLanguages[0].language).to.equal('english');
         expect(createdUser.userLanguages[0].level).to.equal('beginner');
+      });
+
+      it('handles attempt to override an existent user', (done) => {
+        request(ROOT)
+          .post('/api/users')
+          .send(newUser)
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body.reason).to.equal('Duplicate key');
+            done();
+          });
       });
     });
 
