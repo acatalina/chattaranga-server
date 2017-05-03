@@ -6,8 +6,10 @@ const getUser = require('./getUserController');
 const putUserSmileys = require('./putUserSmileysController');
 const putUserLanguage = require('./putUserLanguageController');
 const postNewUser = require('./postNewUserController');
+const getTranslation = require('./getTranslationController');
 
 module.exports = {
+  getTranslation,
   getBadges,
   getLanguages,
   getPrompts,
