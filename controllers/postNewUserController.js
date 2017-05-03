@@ -17,6 +17,8 @@ function getLevels (done) {
 }
 
 function createUser (newUser, done) {
+  if (!newUser.userLanguages) newUser.userLanguages = [];
+
   async.map(newUser.userLanguages, (userLanguage, next) => {
     let language = Object.keys(userLanguage);
     let level = userLanguage[language[0]];
@@ -35,9 +37,10 @@ function createUser (newUser, done) {
     }, []);
 
     newUser = new Users(newUser);
-    
     newUser.save((err, createdUser) => {
-      createdUser.userLanguages = createdUserLanguages;
+      if (err) return done(err);
+
+      createdUser.userLanguages = createdUserLanguages;    
       done(null, createdUser);
     });
   });
@@ -71,9 +74,11 @@ function postNewUserController (req, res, next) {
     languages: getLanguages,
     levels: getLevels
   }, (err, result) => {
-    let composedNewUser = composeNewUser(result);
+    if (err) return next(err);
     
-    return err ? next(err) : res.status(201).send({user: composedNewUser});
+    let composedNewUser = composeNewUser(result);
+
+    return res.status(201).send({user: composedNewUser});
   });
 }
 

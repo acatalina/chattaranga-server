@@ -6,10 +6,10 @@ function putUser (req, res, next) {
   Users.update(
     {username: username},
     {$inc: {smileys: 1}
-    }, function (err) {
-      if (err) return next(err);
+  }, function (err, response) {
+      if (response.nModified === 0) return next({name: 'CastError'});
       
-      res.status(204).send();
+      return err ? next(err) : res.status(204).send();
     }
   );
 }
