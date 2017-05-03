@@ -313,5 +313,21 @@ describe('Chattaranga server', () => {
         expect(createdUser.userLanguages[0].level).to.equal('beginner');
       });
     });
+
+    describe ('GET /translate', () => {
+      it ('returns a correctly translated sentence', () => {
+        const sourceText = 'Hello, my name is Will. I like parrots.';
+        const expectedText = 'Hola, mi nombre es Will. Me gustan los loros.';
+        let translation;
+
+        request(ROOT)
+          .get(`/api/translate?text=${sourceText}&sourceLanguage=en&targetLanguage=es`)
+          .end((err, res) => {
+            translation = res.body.translation;
+            expect(res.status).to.equal(200);
+            expect(translation).to.equal(expectedText);
+          });
+      });
+    });
   });
 });

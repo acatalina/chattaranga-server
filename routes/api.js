@@ -17,6 +17,9 @@ mongoose.connect(db, (err) => {
   return console.log(`connected to the Database: ${db}`);
 });
 
+router.route('/translate')
+  .get(controllers.getTranslation);
+
 router.route('/badges')
   .get((controllers.getBadges));
 
