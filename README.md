@@ -1,67 +1,44 @@
-# Git/Github Workflow
+# Chattaranga Server
 
-You should never work on the `master` or `dev` branches. You must always work on a branch named after your feature (e.g. `feat-44`) and you must make pull requests to `dev`.
+The Chattaranga server is deployed at http://chattaranga.herokuapp.com
 
-A pull request must be accepted by someone other than yourself and should only be accepted if:
-  - someone else has looked over the code
-  - the new code is tested
-  - all new and previous tests are passing
-  - code has been linted
+You can view the Chattaranga API website at http://chattaranga.herokuapp.com/api
 
-Only when you are ready to deploy will you merge to master.
 
-## Managing tasks
 
-Use the Github Issues feature in combination with Github Projects to manage tasks in an agile manner. Open issues, reference other tasks, assign developers and add Issues as cards to a Github Project to manage the development cycle.
+## Downloading the files
 
-Alternatively use Trello and its card numbers to keep track of features/enhancements in your project.
+If you would like to run the Chattaranga server locally you will need npm and node installed.
 
-Make sure to always keep your project board up to date so other members of your team can easily see what needs to be done and what is in progress.
+Ensure you have Node v7.0.0 or higher installed. (Check this with:)
 
-## Working on a new feature
+```
+node -v
+```
 
-Clone the repo if it is the first time working on the codebase.
+then
 
-Make sure you are on the dev branch (if not, checkout a new branch called dev) and pull from the remote dev branch to ensure you are up to date:
+```
+git clone https://github.com/northcoders/Chattaranga-server.git
 
-`$ git pull origin dev`
+cd Chattaranga-server
 
-Checkout a new branch from dev named after your feature
+npm install
+```
+seed your local database by running
 
-`$ git checkout -b feat-44`
+```
+node seed/seed.js
+```
 
-Start working.
+then
 
-Commit regularly. All commit messages should be in the format:
+```
+npm start
+```
 
-`$ git commit -m '[feat-44] Test redux reducer'`
+to run our test suite:
 
-When the feature is finished, push your branch to the remote. You may need to rebase from dev first to avoid a merge conflict if work has been merged into dev since you originally checked out your branch.
-
-To rebase:
-
-Commit your work
-
-`$ git checkout dev`
-
-`$ git pull origin dev`
-
-`$ git checkout feat-44`
-
-`$ git rebase -i dev`
-
-This will begin the process of interactively rebasing any new changes from dev into your branch. If any conflicts arise, follow the instructions to fix the conflict, add the files you've fixed, and continue the rebase.
-
-When you are done you can push your branch.
-
-`$ git push origin feat-44`
-
-On Github, make a pull request. Select dev as the base and select your feature branch to compare. Assign your tutor as the reviewer and make sure you respond to any changes that are suggested.
-
-Once your pull request has been reviewed and merged into dev, you will need up update your local copy of the dev branch since it is now out of date:
-
-`$ git checkout dev`
-
-`$ git pull origin dev`
-
-From there you can checkout another branch and begin working on a new feature.
+```
+npm test
+```
