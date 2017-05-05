@@ -2,13 +2,15 @@
   <html>
     <head>
       <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
         <link rel="stylesheet" href="styles/css/styles.css">
-        <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="styles/css/font-awesome.min.css">
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="icon" type="image/x-icon" href="images/app-logo.png"/>
+      <title>Chattaranga</title>
     </head>
 
     <body>
@@ -21,14 +23,14 @@
     </div>
 
     <div class="nav-item">
-      <a href="https://github.com/baboquivari/chattaranga">
+      <a href="https://github.com/northcoders/Chattaranga-electron-app/blob/master/README.md">
         <p class="about">about</p>
       </a>
       <a href="https://github.com/northcoders/Chattaranga-electron-app">
-        <p>github</p>
+        <p class="github">github</p>
+        <span class="icon"><i class="fa fa-github fa-2x"></i></span>
       </a>
       <a>
-       <span class="icon"><i class="fa fa-github fa-2x"></i></span>
       </a>
     </div>
   </div>
@@ -40,7 +42,9 @@
       <div class="herotron">
         <div class="container-centered">
         <img src="images/main-logo.png" />
-        <button class="button-primary">Download the App</button>
+        <a href="" id="download-link">
+         <button class="button-primary">Download the App</button>
+        </a>
           <div class='systems'>
             <span><i class="fa fa-windows fa-2x"></i></span>
             <span><i class="fa fa-apple fa-2x"></i></span>
@@ -57,7 +61,7 @@
         </div>
       </div>
       <div class="parallax-container">
-        <div class="parallax"><img src="images/dude.png"></div>
+        <div class="parallax"><img src="images/dude.jpg"></div>
       </div>
       <div class="section white">
         <div class="row container">
@@ -66,7 +70,7 @@
         </div>
       </div>
       <div class="parallax-container">
-        <div class="parallax"><img src="images/learn.png"></div>
+        <div class="parallax"><img src="images/learn.jpg"></div>
       </div>
       <div class="section white">
         <div class="row container">
@@ -75,7 +79,7 @@
         </div>
       </div>
       <div class="parallax-container">
-        <div class="parallax"><img src="images/language.png"></div>
+        <div class="parallax"><img src="images/language.jpg"></div>
       </div>
       <div class="section white">
         <div class="row container">
@@ -93,6 +97,13 @@
           $(".button-collapse").sideNav();
         });
       </script>
+      <script> 
+        const platform = window.navigator.platform[0];
+        let link;
+        if (platform === 'M') link = 'app/chattaranga.dmg';
+        if (platform === 'L') link = 'app/chattaranga.deb';
+        document.getElementById("download-link").setAttribute('href', link);
+      </script>
     </body>
 
     <footer class="page-footer">
@@ -100,12 +111,19 @@
             <div class="row">
               <div class="col l6 s12">
                 <p class="grey-text text-lighten-4">Created by team fast-parrot ©</p>
-                <p class="grey-text text-lighten-4" id="credits"> Ruth / Tony / Alvaro / Lord Bulma (Will)</p>
-
+                <p class="grey-text text-lighten-4" id="credits">
+                  <a href="https://github.com/ruthymng">Ruth</a>
+                  / 
+                  <a href="https://github.com/baboquivari">Tony</a>
+                  / 
+                  <a href="https://github.com/acatalina">Alvaro</a>
+                  / 
+                  <a href="https://github.com/will-fleming">Will</a>
+                </p>
               </div>
               <div class="col l4 offset-l2 s12">
                 <ul class="links">
-                  <li><a class="grey-text text-lighten-3" href="https://github.com/baboquivari/chattaranga">about</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/northcoders/Chattaranga-electron-app/blob/master/README.md">about</a></li>
                   <li><a class="grey-text text-lighten-3" href="https://github.com/northcoders/Chattaranga-electron-app">github</a></li>
                   <li><a class="grey-text text-lighten-3" href="http://cultofthepartyparrot.com/">fast-parrot magic</a></li>
                 </ul>

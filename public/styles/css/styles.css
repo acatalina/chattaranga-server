@@ -122,4 +122,14 @@ h3 {
 #footnote {
   text-align: center; }
 
+p a {
+  color: white;
+  text-decoration: underline;
+}
+
+.github {
+  display: inline-block;
+  vertical-align: super;
+}
+
 /*# sourceMappingURL=styles.css.map */
