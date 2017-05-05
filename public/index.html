@@ -23,7 +23,7 @@
     </div>
 
     <div class="nav-item">
-      <a href="https://github.com/baboquivari/chattaranga">
+      <a href="https://github.com/northcoders/Chattaranga-electron-app/blob/master/README.md">
         <p class="about">about</p>
       </a>
       <a href="https://github.com/northcoders/Chattaranga-electron-app">
@@ -42,7 +42,9 @@
       <div class="herotron">
         <div class="container-centered">
         <img src="images/main-logo.png" />
-        <button class="button-primary">Download the App</button>
+        <a href="" id="download-link">
+         <button class="button-primary">Download the App</button>
+        </a>
           <div class='systems'>
             <span><i class="fa fa-windows fa-2x"></i></span>
             <span><i class="fa fa-apple fa-2x"></i></span>
@@ -95,6 +97,13 @@
           $(".button-collapse").sideNav();
         });
       </script>
+      <script> 
+        const platform = window.navigator.platform[0];
+        let link;
+        if (platform === 'M') link = 'app/chattaranga.dmg';
+        if (platform === 'L') link = 'app/chattaranga.deb';
+        document.getElementById("download-link").setAttribute('href', link);
+      </script>
     </body>
 
     <footer class="page-footer">
@@ -114,7 +123,7 @@
               </div>
               <div class="col l4 offset-l2 s12">
                 <ul class="links">
-                  <li><a class="grey-text text-lighten-3" href="https://github.com/baboquivari/chattaranga">about</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/northcoders/Chattaranga-electron-app/blob/master/README.md">about</a></li>
                   <li><a class="grey-text text-lighten-3" href="https://github.com/northcoders/Chattaranga-electron-app">github</a></li>
                   <li><a class="grey-text text-lighten-3" href="http://cultofthepartyparrot.com/">fast-parrot magic</a></li>
                 </ul>
